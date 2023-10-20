@@ -23,8 +23,8 @@ from fastapi.staticfiles import StaticFiles
 from intern_model import IRVSearch
 
 app = FastAPI()
-app.mount("/static", StaticFiles(directory="/home/hoangtv/Desktop/Attention/Tung/utils/static"), name="static")
-templates = Jinja2Templates(directory="/home/hoangtv/Desktop/Attention/Tung/utils/templates")
+app.mount("/static", StaticFiles(directory="/home/hoangtv/Desktop/Attention/Truong/utils/static"), name="static")
+templates = Jinja2Templates(directory="/home/hoangtv/Desktop/Attention/Truong/utils/templates")
 
 class SearchRequest(BaseModel):
     input: str
@@ -149,7 +149,7 @@ async def search(search_request: SearchRequest):
         scores, images_id, image_paths = model.text_search(translated_text, k=100)
         shortened_path, images_id = format_for_CSV(image_paths,images_id.tolist())
 
-        destination_folder = "/home/hoangtv/Desktop/Attention/Tung/utils/static/images"
+        destination_folder = "/home/hoangtv/Desktop/Attention/Truong/utils/static/images"
         copy_images_to_destination(image_paths, destination_folder)
 
         image_files = [os.path.join('images', filename) for filename in os.listdir(destination_folder) if filename.endswith('.jpg')]
@@ -176,7 +176,7 @@ async def nearKeyFrames(image_data: ImageIdData):
 
         shortened_path, near_frames_id = format_for_CSV(near_frames_path,near_frames_id)
 
-        near_key_frames_folder = "/home/hoangtv/Desktop/Attention/Tung/utils/static/images_1"
+        near_key_frames_folder = "/home/hoangtv/Desktop/Attention/Truong/utils/static/images_1"
         copy_images_to_destination(near_frames_path, near_key_frames_folder)
         near_frame_files = [os.path.join('http://127.0.0.1:8210/static/images_1', filename) for filename in os.listdir(near_key_frames_folder) if filename.endswith('.jpg')]
 
@@ -195,5 +195,5 @@ if __name__ == '__main__':
     import uvicorn
     uvicorn.run(app, host='127.0.0.1', port=8210, debug=True)
 
-# run: cd /home/hoangtv/Desktop/Attention/Tung/utils
+# run: cd /home/hoangtv/Desktop/Attention/Truong/utils
 # uvicorn intern_processing:app --host 127.0.0.1 --port 8210 --reload
