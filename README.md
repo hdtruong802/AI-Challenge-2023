@@ -1,5 +1,5 @@
 # TEAM 2 AIC-HCM-UTE-AI-LAB
 ## User Interface
-![web](/img/web.png)
+![web](/img/interface.png)
 ## Pipeline
 ![pineline](/img/pineline.png)
